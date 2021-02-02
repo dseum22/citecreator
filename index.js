@@ -71,5 +71,5 @@ $(function () {
     });
 });
 function convertDate(input) {
-    return `${input.getMonth()}/${input.getDay()}/${input.getFullYear()}`
+    return `${input.getMonth() + 1}/${input.getDate() + 1}/${input.getFullYear()}`
 }
