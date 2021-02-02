@@ -13,7 +13,7 @@ $(function () {
         let title = $('input[name="title"]').val();
         let link = $('input[name="link"]').val();
         if ($('input[type="checkbox"]').is(':checked')) {
-            $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${convertDate(now)}) DSE`);
+            $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${now.toFormat('D')}) DSE`);
         } else {
             $('textarea[data-copy]').val(`${author.split(' ').pop()} ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${now.toFormat('D')}) DSE`);
         }
@@ -25,7 +25,7 @@ $(function () {
         let title = $('input[name="title"]').val();
         let link = $('input[name="link"]').val();
         if ($('input[type="checkbox"]').is(':checked')) {
-            $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${convertDate(now)}) DSE`);
+            $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${now.toFormat('D')}) DSE`);
         } else {
             $('textarea[data-copy]').val(`${author.split(' ').pop()} ${date.toFormat('yy')} (${author}: ${quals}. "${title}," ${date.toFormat('D')}, ${link}. DOA: ${now.toFormat('D')}) DSE`);
         }
