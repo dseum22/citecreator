@@ -116,9 +116,9 @@
                 let title = $('input[name="title"]').val();
                 let link = $('input[name="link"]').val();
                 if ($('input[type="checkbox"]').is(':checked')) {
-                    $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${new Date(date).getFullYear()} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
+                    $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.getFullYear().toString().slice(-2)} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
                 } else {
-                    $('textarea[data-copy]').val(`${author.split(' ').pop()} ${new Date(date).getFullYear()} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
+                    $('textarea[data-copy]').val(`${author.split(' ').pop()} ${date.getFullYear().toString().slice(-2)} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
                 }
             });
             $('input[type="checkbox"]').change(function () {
@@ -128,9 +128,9 @@
                 let title = $('input[name="title"]').val();
                 let link = $('input[name="link"]').val();
                 if ($('input[type="checkbox"]').is(':checked')) {
-                    $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${new Date(date).getFullYear()} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
+                    $('textarea[data-copy]').val(`${author.split(' ').pop()} et al. ${date.getFullYear().toString().slice(-2)} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
                 } else {
-                    $('textarea[data-copy]').val(`${author.split(' ').pop()} ${new Date(date).getFullYear()} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
+                    $('textarea[data-copy]').val(`${author.split(' ').pop()} ${date.getFullYear().toString().slice(-2)} (${author}: ${quals}. "${title}," ${convertDate(date)}, ${link}. DOA: ${convertDate(now)}) DSE`);
                 }
             });
             $('button[data-copy]').click(function () {
