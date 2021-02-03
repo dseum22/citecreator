@@ -1,0 +1,1 @@
+const domain = 'https://dseum22.github.io/citecreator';

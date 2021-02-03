@@ -28,7 +28,7 @@ $(function () {
         updateCite();
     });
     $('button[name="settings"]').click(function () {
-        location.href = location.origin + '/settings.html';
+        location.href = domain + '/settings.html';
     });
     $('button[name="archive"]').click(function () {
         if (localStorage.getItem('archive') == null) {

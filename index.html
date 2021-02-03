@@ -95,9 +95,10 @@
     </footer>
 
     <!-- scripts -->
+    <script src="config.js"></script>
     <script>
         if (localStorage.getItem('link') == null) {
-            location.href = location.origin + '/settings.html';
+            location.href = domain + '/settings.html';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
