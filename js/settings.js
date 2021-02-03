@@ -13,7 +13,7 @@ $(function () {
     feather.replace();
     $('[data-toggle="tooltip"]').tooltip();
     $('button[name="home"]').click(function () {
-        location.href = '/index.html';
+        location.href = location.origin + '/index.html';
     });
     $('button[name="save"]').click(function () {
         $('form').submit();
@@ -32,7 +32,7 @@ $(function () {
             localStorage.setItem('link', $('input[name="link"]').val());
             localStorage.setItem('name', $('input[name="name"]').val());
             localStorage.setItem('initials', $('input[name="initials"]').val());
-            location.href = '/index.html';
+            location.href = location.origin + '/index.html';
         }
         this.classList.add('was-validated');
     });
