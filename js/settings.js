@@ -10,6 +10,7 @@ $(function () {
     } else {
         $('div[name="header"]').append('<div class="flex-grow-1"><button type="button" class="btn btn-danger btn-square shadow-sm float-end" data-toggle="tooltip" data-placement="bottom" title="Config status"><i data-feather="x"></i></button></div>');
     }
+    feather.replace();
     $('button[name="home"]').click(function () {
         location.href = '/index.html';
     });
