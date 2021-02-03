@@ -1,0 +1,13 @@
+.btn-square {
+    width: 58px;
+    height: 58px;
+}
+
+.btn-block {
+    height: 58px;
+    font-size: 26px;
+}
+
+.w-100 {
+    width: 100%;
+}
