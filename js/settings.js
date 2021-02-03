@@ -3,14 +3,15 @@ const now = DateTime.local();
 $(function () {
     $('#year').text(now.toFormat('yyyy'));
     if (localStorage.getItem('link') != null) {
-        $('div[name="header"]').append('<div class="flex-grow-1"><button type="button" class="btn btn-success btn-square shadow-sm float-end" data-toggle="tooltip" data-placement="bottom" title="Config status"><i data-feather="check"></i></button></div>');
+        $('div[name="header"]').append('<button type="button" class="btn btn-success btn-square shadow-sm float-end" data-toggle="tooltip" data-placement="bottom" title="Config status"><i data-feather="check"></i></button>');
         $('input[name="link"]').val(localStorage.getItem('link'));
         $('input[name="name"]').val(localStorage.getItem('name'));
         $('input[name="initials"]').val(localStorage.getItem('initials'));
     } else {
-        $('div[name="header"]').append('<div class="flex-grow-1"><button type="button" class="btn btn-danger btn-square shadow-sm float-end" data-toggle="tooltip" data-placement="bottom" title="Config status"><i data-feather="x"></i></button></div>');
+        $('div[name="header"]').append('<button type="button" class="btn btn-danger btn-square shadow-sm float-end" data-toggle="tooltip" data-placement="bottom" title="Config status"><i data-feather="x"></i></button>');
     }
     feather.replace();
+    $('[data-toggle="tooltip"]').tooltip();
     $('button[name="home"]').click(function () {
         location.href = '/index.html';
     });

@@ -25,7 +25,7 @@ $(function () {
     updateCite();
     $('button[name="reset"]').click(function () {
         $('form').trigger('reset');
-        $('textarea[data-copy]').val('');
+        updateCite();
     });
     $('button[name="settings"]').click(function () {
         location.href = '/settings.html';
@@ -117,6 +117,8 @@ $(function () {
         }
         this.classList.add('was-validated');
     });
+    feather.replace();
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function updateCite() {
