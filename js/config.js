@@ -1,1 +1,1 @@
-const domain = 'https://dseum22.github.io/citecreator';
+const domain = 'https://cc.denniseum.com';
