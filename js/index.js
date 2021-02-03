@@ -70,7 +70,7 @@ $(function () {
             $(this).parent().parent().remove();
         }
     });
-    $('div[name="authors"]').on('keyup', 'input', function () {
+    $('form').on('keyup', 'input', function () {
         updateCite();
     });
     $('button[data-copy]').click(function () {
