@@ -1,1 +1,1 @@
-const domain = 'http://127.0.0.1:5500';
+const domain = 'https://dseum22.github.io/citecreator';
