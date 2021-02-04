@@ -5,24 +5,21 @@ const lsname = localStorage.getItem('name')
 const lsinitials = localStorage.getItem('initials');
 $(function () {
     $('#year').text(now.toFormat('yyyy'));
-    /*
-    if (localStorage.getItem('archive') == null) {
-        $('button[name="archive"]').addClass('btn-light');
-    } else {
-        $('button[name="archive"]').addClass('btn-dark');
-        const archive = JSON.parse(localStorage.getItem('archive'));
-        $('input[name="date"]').val(archive.date);
-        $('input[name="title"]').val(archive.title);
-        $('input[name="link"]').val(archive.link);
-        $('input[name="author"]').val(archive.authors[0].author);
-        $('input[name="quals"]').val(archive.authors[0].quals);
-        for (item of archive.authors) {
-            if (item.author != archive.authors[0].author) {
+    if (localStorage.getItem('cloud') != null) {
+        let cloud = JSON.parse(localStorage.getItem('archive'))[parseInt(localStorage.getItem('cloud'))].cite;
+        $('input[name="date"]').val(DateTime.fromISO(cloud.date).toISODate());
+        $('input[name="title"]').val(cloud.title);
+        $('input[name="link"]').val(cloud.link);
+        $('input[name="author"]').val(cloud.authors[0].author);
+        $('input[name="quals"]').val(cloud.authors[0].quals);
+        for (item of cloud.authors) {
+            if (item.author != cloud.authors[0].author) {
                 $('div[name="authors"]').append(`<div class="row"> <div class="col col-md-3"> <div class="form-floating mb-3"> <input type="text" class="form-control" name="author" placeholder="author" value="${item.author}" required> <label>Author</label> </div> <div class=" position-relative float-end bg-white ps-3" style="bottom: 3rem; right: 0.65rem;"> </div> </div> <div class="col-md"> <div class="form-floating mb-3"> <input type="text" class="form-control" name="quals" placeholder="quals" value="${item.quals}" required> <label>Qualifications</label> </div> </div> <div class="col-md-auto"> <button type="button" data-authors="add" class="btn btn-dark btn-square shadow-sm"><i data-feather="plus"></i></button> <button type="button" data-authors="delete" class="btn btn-dark btn-square shadow-sm ms-3"><i data-feather="trash"></i></button> </div> </div>`);
             }
         }
         feather.replace();
-    }*/
+        localStorage.removeItem('cloud');
+    }
     updateCite();
     $('button[name="reset"]').click(function () {
         $('form').trigger('reset');
@@ -33,8 +30,9 @@ $(function () {
     });
     $('button[name="archivecite"]').click(function () {
         if ($('form')[0].checkValidity()) {
+            $('button[name="archivecite"]').html('<div class="spinner-border align-middle" role="status"> <span class="visually-hidden">Loading...</span> </div>');
             let authors = [];
-            let date = $('input[name="date"]').val();
+            let date = DateTime.fromISO($('input[name="date"]').val());
             let title = $('input[name="title"]').val();
             let link = $('input[name="link"]').val();
             $('div[name="authors"] > div').each(function () {
@@ -48,29 +46,41 @@ $(function () {
                     quals: quals
                 });
             });
+            let simplecite = '';
+            if (authors.length == 1) {
+                simplecite = `${authors[0].author.split(' ').pop()} ${date.toFormat('yy')}`;
+            } else if (authors.length == 2) {
+                simplecite = `${authors[0].author.split(' ').pop()} and ${authors[1].author.split(' ').pop()} ${date.toFormat('yy')}`;
+            } else {
+                simplecite = `${authors[0].author.split(' ').pop()} et al. ${date.toFormat('yy')}`;
+            }
             if (localStorage.getItem('archive') == null) {
                 localStorage.setItem('archive', JSON.stringify([{
-                    date: now,
+                    datetime: now,
                     cite: {
                         authors: authors,
                         date: date,
                         title: title,
-                        link: link
+                        link: link,
+                        simplecite: simplecite
                     }
                 }]));
             } else {
                 let temp = JSON.parse(localStorage.getItem('archive'));
-                temp.push({
-                    date: now,
+                temp.unshift({
+                    datetime: now,
                     cite: {
                         authors: authors,
                         date: date,
                         title: title,
-                        link: link
+                        link: link,
+                        simplecite: simplecite
                     }
                 });
                 localStorage.setItem('archive', JSON.stringify(temp));
             }
+            $('button[name="archivecite"]').html('<i data-feather="upload-cloud"></i>');
+            feather.replace();
         }
         $('form').addClass('was-validated');
     });
