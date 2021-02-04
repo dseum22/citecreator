@@ -5,6 +5,7 @@ const lsname = localStorage.getItem('name')
 const lsinitials = localStorage.getItem('initials');
 $(function () {
     $('#year').text(now.toFormat('yyyy'));
+    /*
     if (localStorage.getItem('archive') == null) {
         $('button[name="archive"]').addClass('btn-light');
     } else {
@@ -21,7 +22,7 @@ $(function () {
             }
         }
         feather.replace();
-    }
+    }*/
     updateCite();
     $('button[name="reset"]').click(function () {
         $('form').trigger('reset');
@@ -30,41 +31,55 @@ $(function () {
     $('button[name="settings"]').click(function () {
         location.href = domain + '/settings.html';
     });
-    $('button[name="archive"]').click(function () {
-        if (localStorage.getItem('archive') == null) {
-            if ($('form')[0].checkValidity()) {
-                let authors = [];
-                let date = $('input[name="date"]').val();
-                let title = $('input[name="title"]').val();
-                let link = $('input[name="link"]').val();
-                $('div[name="authors"] > div').each(function () {
-                    let author = $(this).find('input[name="author"]').val();
-                    let quals = $(this).find('input[name="quals"]').val();
-                    if (quals.slice(-1) == '.') {
-                        quals = quals.slice(0, -1);
-                    }
-                    authors.push({
-                        author: author,
-                        quals: quals
-                    });
+    $('button[name="archivecite"]').click(function () {
+        if ($('form')[0].checkValidity()) {
+            let authors = [];
+            let date = $('input[name="date"]').val();
+            let title = $('input[name="title"]').val();
+            let link = $('input[name="link"]').val();
+            $('div[name="authors"] > div').each(function () {
+                let author = $(this).find('input[name="author"]').val();
+                let quals = $(this).find('input[name="quals"]').val();
+                if (quals.slice(-1) == '.') {
+                    quals = quals.slice(0, -1);
+                }
+                authors.push({
+                    author: author,
+                    quals: quals
                 });
-                localStorage.setItem('archive', JSON.stringify({
-                    authors: authors,
-                    date: date,
-                    title: title,
-                    link: link
-                }));
-                location.reload();
+            });
+            if (localStorage.getItem('archive') == null) {
+                localStorage.setItem('archive', JSON.stringify([{
+                    date: now,
+                    cite: {
+                        authors: authors,
+                        date: date,
+                        title: title,
+                        link: link
+                    }
+                }]));
+            } else {
+                let temp = JSON.parse(localStorage.getItem('archive'));
+                temp.push({
+                    date: now,
+                    cite: {
+                        authors: authors,
+                        date: date,
+                        title: title,
+                        link: link
+                    }
+                });
+                localStorage.setItem('archive', JSON.stringify(temp));
             }
-            $('form').addClass('was-validated');
-        } else {
-            localStorage.removeItem('archive');
-            location.reload();
         }
+        $('form').addClass('was-validated');
+    });
+    $('button[name="archiveopen"]').click(function () {
+        location.href = domain + '/archive.html';
     });
     $('div[name="authors"]').on('click', 'button', function () {
         if ($(this).data('authors') == 'add') {
-            $(this).parent().parent().after('<div class="row"> <div class="col col-md-3"> <div class="form-floating mb-3"> <input type="text" class="form-control" name="author" placeholder="author" required> <label>Author</label> </div> <div class=" position-relative float-end bg-white ps-3" style="bottom: 3rem; right: 0.65rem;"> </div> </div> <div class="col-md"> <div class="form-floating mb-3"> <input type="text" class="form-control" name="quals" placeholder="quals" required> <label>Qualifications</label> </div> </div> <div class="col-md-auto"> <button type="button" data-authors="add" class="btn btn-dark btn-square shadow-sm"><i data-feather="plus"></i></button> <button type="button" data-authors="delete" class="btn btn-dark btn-square shadow-sm ms-3"><i data-feather="trash"></i></button> </div> </div>');
+            $(this).parent().parent().after('<div class="row"> <div class="col col-md-3"> <div class="form-floating shadow-sm mb-3"> <input type="text" class="form-control" name="author" placeholder="author" required> <label>Author</label> </div> <div class=" position-relative float-end bg-white ps-3" style="bottom: 3rem; right: 0.65rem;"> </div> </div> <div class="col-md"> <div class="form-floating shadow-sm mb-3"> <input type="text" class="form-control" name="quals" placeholder="quals" required> <label>Qualifications</label> </div> </div> <div class="col-md-auto"> <button type="button" data-authors="add" class="btn btn-secondary btn-square shadow-sm"><i data-feather="plus"></i></button> <button type="button" data-authors="delete" class="btn btn-secondary btn-square shadow-sm ms-3"><i data-feather="trash"></i></button> </div> </div>');
             feather.replace();
         } else if ($(this).data('authors') == 'delete') {
             $(this).parent().parent().remove();

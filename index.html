@@ -21,6 +21,10 @@
 </head>
 
 <body>
+    <div clas="row">
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
     <!-- container -->
     <div class="container-md">
         <div class="my-3" name="header">
@@ -31,25 +35,27 @@
                 data-placement="bottom" title="Reset inputs"><i data-feather="refresh-cw"></i></button>
             <button type="button" name="submit" class="btn btn-dark btn-square shadow-sm ms-3" data-toggle="tooltip"
                 data-placement="bottom" title="Submit entry"><i data-feather="send"></i></button>
-            <button type="button" name="archive" class="btn btn-square shadow float-end" data-toggle="tooltip"
-                data-placement="bottom" title="Archive current cite"><i data-feather="archive"></i></button>
+            <button type="button" name="archiveopen" class="btn btn-dark btn-square shadow-sm float-end" data-toggle="tooltip"
+                data-placement="bottom" title="Open archive"><i data-feather="archive"></i></button>
+            <button type="button" name="archivecite" class="btn btn-dark btn-square shadow-sm float-end me-3" data-toggle="tooltip"
+                data-placement="bottom" title="Archive cite"><i data-feather="share"></i></button>
         </div>
         <form class="needs-validation mt-5" autocomplete="off" novalidate>
             <div class="row">
                 <div class="col col-md-3">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating shadow-sm mb-3">
                         <input type="text" class="form-control" name="title" placeholder="title" required>
                         <label>Title</label>
                     </div>
                 </div>
                 <div class="col col-md-3">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating shadow-sm mb-3">
                         <input type="date" class="form-control" name="date" required>
                         <label>Date</label>
                     </div>
                 </div>
                 <div class="col-md">
-                    <div class="form-floating mb-3">
+                    <div class="form-floating shadow-sm mb-3">
                         <input type="text" class="form-control" name="link" placeholder="link" required>
                         <label>Link</label>
                     </div>
@@ -58,7 +64,7 @@
             <div name="authors">
                 <div class="row">
                     <div class="col col-md-3">
-                        <div class="form-floating mb-3">
+                        <div class="form-floating shadow-sm mb-3">
                             <input type="text" class="form-control" name="author" placeholder="author" required>
                             <label>Author</label>
                         </div>
@@ -67,13 +73,13 @@
                         </div>
                     </div>
                     <div class="col-md">
-                        <div class="form-floating mb-3">
+                        <div class="form-floating shadow-sm mb-3">
                             <input type="text" class="form-control" name="quals" placeholder="quals" required>
                             <label>Qualifications</label>
                         </div>
                     </div>
                     <div class="col-md-auto">
-                        <button type="button" data-authors="add" class="btn btn-dark btn-square shadow-sm"><i
+                        <button type="button" data-authors="add" class="btn btn-secondary btn-square shadow-sm"><i
                                 data-feather="plus"></i></button>
                     </div>
                 </div>
@@ -81,7 +87,7 @@
         </form>
         <div class="mt-3">
             <label class="form-label">Citation</label>
-            <textarea data-copy class="form-control" rows="5" style="resize:none;font-size:18px;" disabled></textarea>
+            <textarea data-copy class="form-control shadow-sm" rows="5" style="resize:none;font-size:18px;" disabled></textarea>
             <div class="text-end">
                 <button type="button" data-copy class="btn btn-light shadow-sm position-relative"
                     style="bottom: 3rem; right: 0.65rem;">copy</button>

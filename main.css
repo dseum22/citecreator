@@ -8,6 +8,7 @@
     font-size: 26px;
 }
 
-.w-100 {
-    width: 100%;
+.modal-content {
+    border: none;
+    border-radius: 10px;
 }
