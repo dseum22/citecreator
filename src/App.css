@@ -54,7 +54,7 @@ body {
 }
 
 .btn-classic {
-  @apply rounded-md shadow-md bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-200 p-4 transition-colors duration-200;
+  @apply rounded-md shadow-md bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-200 p-3 transition-colors duration-200;
 }
 
 .form-validate input:invalid,
