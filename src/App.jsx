@@ -1,17 +1,15 @@
-import Header from './components/Header'
 import Footer from './components/Footer'
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Settings from './pages/Settings'
 import './App.css'
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter basename='/'>
       <div className='flex flex-col justify-between min-h-screen'>
-        <Header />
-        <main className='h-full'>
+        <main>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/settings' component={Settings} />
@@ -19,7 +17,7 @@ const App = () => {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

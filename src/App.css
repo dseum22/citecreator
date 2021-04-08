@@ -54,7 +54,7 @@ body {
 }
 
 .btn-classic {
-  @apply rounded-md shadow-md bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-200 p-3 transition-colors duration-200;
+  @apply rounded-md shadow-md bg-gray-800 hover:bg-gray-700 text-white hover:text-gray-200 p-3 transition-colors duration-200 focus:outline-none;
 }
 
 .form-validate input:invalid,
@@ -63,9 +63,70 @@ body {
 }
 
 .form-field {
-  @apply border border-gray-400 rounded-md w-full h-10 sm:h-12 outline-none focus:ring-1 focus:ring-gray-800 focus:border-gray-800 text-lg sm:text-xl p-2 sm:p-3 placeholder-gray-600 transition-all duration-200 disabled:bg-gray-100;
+  @apply border border-gray-400 rounded-md w-full h-10 sm:h-12 outline-none focus:ring-1 focus:ring-gray-800 focus:border-gray-800 text-lg p-2 sm:p-3 placeholder-gray-600 transition-all duration-200 disabled:bg-gray-100;
 }
 
 textarea.form-field {
-  min-height: 100px;
+  min-height: 10rem;
+  @apply align-top !transition-none;
+}
+
+.form-floating {
+  @apply relative;
+}
+
+.form-floating > .form-field,
+.form-floating > .form-select {
+  height: calc(3.5rem + 2px);
+  @apply py-4 px-3 placeholder-transparent;
+}
+
+.form-floating > label {
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  @apply py-4 px-3 absolute top-0 left-0 h-full pointer-events-none border border-solid border-transparent text-gray-700 text-lg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-floating > label {
+      transition: none;
+  }
+}
+
+.form-floating > .form-field:not(:-moz-placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-field:focus,
+.form-floating > .form-field:not(:placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-field:-webkit-autofill {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-select {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-field:not(:-moz-placeholder-shown) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-floating > .form-field:focus ~ label,
+.form-floating > .form-field:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-floating > .form-field:-webkit-autofill ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
