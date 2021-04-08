@@ -51,7 +51,7 @@ const Home = () => {
         } else {
             simpleSection = `${authors[0].name.trim().split(' ').pop()} et al.`
         }
-        return setCitation(`${simpleSection} ${article.date.trim() === '' ? 'No Date' : article.date.slice(-2)} (${authors.map(author => `${author.name}: ${author.quals.trim().slice(-1) === '.' ? author.quals.trim().slice(0, -1) : author.quals.trim()}. `)}'${article.title.trim()},' ${article.date.trim() === '' ? 'No Date' : article.date.trim().slice(-2)}, ${article.link.trim()}. DOA: ${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}) ${localStorage.getItem('initials')}`)
+        return setCitation(`${simpleSection} ${article.date.trim() === '' ? 'No Date' : article.date.slice(-2)} (${authors.map(author => `${author.name}: ${author.quals.trim().slice(-1) === '.' ? author.quals.trim().slice(0, -1) : author.quals.trim()}. `)}'${article.title.trim()},' ${article.date.trim() === '' ? 'No Date' : article.date.trim().slice(-2)}, ${article.link.trim()}. DOA: ${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}) ${localStorage.getItem('initials')}`)
     }
     const handleSubmit = e => {
         e.preventDefault()
@@ -69,7 +69,7 @@ const Home = () => {
                     meta: {
                         link: localStorage.getItem('link'),
                         name: localStorage.getItem('name'),
-                        date: `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
+                        date: `${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}`
                     }
                 })
             }).then(() => setSuccess(true)).catch(error => alert(error))
@@ -130,7 +130,7 @@ const Home = () => {
                     <h2 className='text-xl mb-1'>Article</h2>
                     <div className='grid grid-cols-5 gap-6'>
                         <div className='form-floating'>
-                            <input className='form-field' type='text' placeholder='Date' name='date' value={article.date} onChange={handleArticleChange} required></input>
+                            <input className='form-field' type='text' placeholder='Date' name='date' value={article.date} onChange={handleArticleChange}></input>
                             <label>Date</label>
                         </div>
                         <div className='form-floating col-span-2'>
