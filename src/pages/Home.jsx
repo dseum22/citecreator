@@ -37,7 +37,7 @@ const Home = () => {
     const handleCitesChange = (e, index) => setAuthors(authors => ([
         ...authors.slice(0, index),
         {
-            ...authors[0],
+            ...authors[index],
             [e.target.name]: e.target.value
         },
         ...authors.slice(index + 1)
@@ -51,10 +51,12 @@ const Home = () => {
         } else {
             simpleSection = `${authors[0].name.trim().split(' ').pop()} et al.`
         }
-        return setCitation(`${simpleSection} ${article.date.trim() === '' ? 'No Date' : article.date.slice(-2)} (${authors.map(author => `${author.name}: ${author.quals.trim().slice(-1) === '.' ? author.quals.trim().slice(0, -1) : author.quals.trim()}. `)}'${article.title.trim()},' ${article.date.trim() === '' ? 'No Date' : article.date.trim().slice(-2)}, ${article.link.trim()}. DOA: ${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}) ${localStorage.getItem('initials')}`)
+        console.log(authors)
+        setCitation(`${simpleSection} ${article.date.trim() === '' ? 'No Date' : article.date.slice(-2)} (${authors.map(author => `${author.name}: ${author.quals.trim().slice(-1) === '.' ? author.quals.trim().slice(0, -1) : author.quals.trim()}. `).join('')}"${article.title.trim()}," ${article.date.trim() === '' ? 'No Date' : article.date.trim().slice(-2)}, ${article.link.trim()}. DOA: ${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}) ${localStorage.getItem('initials')}`)
     }
     const handleSubmit = e => {
         e.preventDefault()
+        console.log(authors)
         if (formRef.current.checkValidity()) {
             setValidityToggle(false)
             fetch(atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3QTE5SXZldkpyeW92d2VVRE9nUkNERktNQWEtWVgtUENBS1RUWXA3ejNqS081OFBIOGZpcGRVWWg1NVBtdXczNG16US9leGVj'), {
