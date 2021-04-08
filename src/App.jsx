@@ -7,7 +7,7 @@ import './App.css'
 
 const App = () => {
   return (
-    <HashRouter basename='/'>
+    <HashRouter>
       <div className='flex flex-col justify-between min-h-screen'>
         <main>
           <Switch>
