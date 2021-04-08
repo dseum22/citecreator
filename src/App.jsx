@@ -1,13 +1,13 @@
 import Footer from './components/Footer'
 import React from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Settings from './pages/Settings'
 import './App.css'
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className='flex flex-col justify-between min-h-screen'>
         <main>
           <Switch>
@@ -17,7 +17,7 @@ const App = () => {
         </main>
         <Footer />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
