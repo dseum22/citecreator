@@ -19,6 +19,10 @@ const Settings = () => {
             link: localStorage.getItem('link')
         })
     }, [])
+    const handleChange = e => setData(data => ({
+        ...data,
+        [e.target.name]: e.target.value
+    }))
     const handleSubmit = e => {
         e.preventDefault()
         if (formRef.current.checkValidity()) {
