@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -7,19 +7,18 @@ const Settings = () => {
     const router = useRouter()
     const formRef = useRef(null)
     const [validityToggle, setValidityToggle] = useState(false)
-    const [data, setData] = useState(localStorage.getItem('initials') ? {
-        initials: localStorage.getItem('initials'),
-        name: localStorage.getItem('name'),
-        link: localStorage.getItem('link')
-    } : {
+    const [data, setData] = useState({
         initials: '',
         name: '',
         link: ''
     })
-    const handleChange = e => setData(data => ({
-        ...data,
-        [e.target.name]: e.target.value
-    }))
+    useEffect(() => {
+        if (localStorage.getItem('initials')) setData({
+            initials: localStorage.getItem('initials'),
+            name: localStorage.getItem('name'),
+            link: localStorage.getItem('link')
+        })
+    }, [])
     const handleSubmit = e => {
         e.preventDefault()
         if (formRef.current.checkValidity()) {
