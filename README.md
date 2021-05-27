@@ -1,6 +1,6 @@
 ## About
 
-Creates cites and entries for debate evidence.
+Creates cites and entries for debate evidence. Built with Next and Tailwind.
 
 ## License
 
